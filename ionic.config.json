@@ -1,0 +1,11 @@
+{
+  "name": "veterinariaIonic",
+  "proxies": [{
+    "path": "/api",
+    "proxyUrl": "http://animallife.site"
+  }],
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

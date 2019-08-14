@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+          <div class="ion-text-center">
+              Video Juegos
+          </div>
+      </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row *ngIf="usuario1 == 'admin'"> 
+      <ion-card class="cssAgregar">
+        <ion-card-content class="cssAgregar">
+            <ion-item class="cssAgregar">
+              <ion-label><b>Nombre:</b></ion-label> 
+              <ion-input placeholder="Ingresa el nombre" [(ngModel)]="nombre"></ion-input>
+            </ion-item>
+            <ion-item class="cssAgregar">
+              <ion-label><b>Descripción:</b></ion-label>
+              <ion-input placeholder="Ingresa la descripción" [(ngModel)]="descripcion"></ion-input>
+            </ion-item>
+            <ion-item class="cssAgregar">
+              <ion-label><b>Desarrolladora:</b></ion-label>
+              <ion-input placeholder="Ingresa la desarrolladora" [(ngModel)]="desarrolladora"></ion-input>
+            </ion-item>
+            <ion-item class="cssAgregar">
+              <ion-label><b>Año:</b></ion-label>
+              <ion-input placeholder="Ingresa el año" [(ngModel)]="anno"></ion-input>
+            </ion-item>
+            <div class="ion-text-center">
+                <ion-button expand="block" color="success" (click)="agregarVideojuegos()">Agregar</ion-button>
+            </div>
+          </ion-card-content>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+    
+  <ion-grid fixed>
+    <ion-row *ngIf="usuario1 == 'user' || usuario1 == 'admin'">
+      <!-- <ion-searchbar class="cssBuscar" [(ngModel)]="miBuscador"></ion-searchbar> -->
+      <ion-col *ngFor="let article of articles" size="12" size-lg="3" size-md="4" size-sm="6" size-xs="12">
+        <ion-card *ngIf="article.nombre == miBuscador || miBuscador == '' || article.descripcion == miBuscador">
+          <ion-card-header class="cssGet">
+            <!--<ion-card-title class="txt-title">ID: {{ article.id }}</ion-card-title>-->
+            <ion-card-title class="txt-title"><b>Nombre:</b> {{ article.nombre }} </ion-card-title>
+            <ion-card-title class="txt-title"><b>Descripción:</b> {{ article.descripcion }} </ion-card-title>
+            <ion-card-title class="txt-title"><b>Desarrolladora:</b> {{ article.desarrolladora }} </ion-card-title>
+            <ion-card-title class="txt-title"><b>Año:</b> {{ article.anno }} </ion-card-title>
+            <ion-button *ngIf="usuario1 == 'admin'" expand="full" (click)="editarVideojuegos(article.id,article.nombre,article.descripcion,article.desarrolladora,article.anno)">Editar</ion-button>
+            <ion-button *ngIf="usuario1 == 'admin'" expand="full" color="danger" (click)="eliminarVideojuegos(article.id)">Eliminar</ion-button>
+            </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

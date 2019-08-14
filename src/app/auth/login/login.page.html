@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+        <div class="ion-text-center">
+            Login
+        </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid >
+      <ion-row> 
+        <ion-card>
+          <ion-card-content>
+            <ion-item>
+              <ion-label >Usuario:</ion-label>
+              <ion-input [(ngModel)]="data.username" placeholder="Ingresa el usuario"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label >Password:</ion-label>
+              <ion-input type="password" [(ngModel)]="data.password" placeholder="Ingresa la contraseña"></ion-input>
+            </ion-item>
+            <div class="ion-text-center">
+              <ion-button expand="block" color="success" (click)="enviar()" expand="full">Enviar</ion-button>
+            </div>  
+            </ion-card-content>
+        </ion-card>
+      </ion-row>
+    </ion-grid>
+  <ion-grid >
+    <ion-row> 
+      <ion-card>
+        <ion-card-content>
+            <ion-item>
+              <ion-label>URL:</ion-label> 
+              <ion-input placeholder="Ingresa la URL" [(ngModel)]="urlapi"></ion-input>
+            </ion-item>
+            <div class="ion-text-center">
+                <ion-button expand="block" color="primary" (click)="aceptar()">Aceptar</ion-button>
+            </div>
+          </ion-card-content>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,95 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+          <div class="ion-text-center">
+              Configurar
+          </div>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <br>
+<ion-content>
+  <ion-grid>
+    <ion-row *ngIf="usuario1 == 'admin' || usuario1 == 'user' ">
+      <ion-card class="cssSesion">
+        <ion-card-content class="cssSesion">
+          <ion-item class="cssSesion">
+            <ion-card-subtitle><p>En este apartado puede cerrar sesión.</p></ion-card-subtitle> 
+        </ion-item>
+        
+          <ion-button expand="block" color="danger" (click)="aceptar()">Cerrar Sesión</ion-button>
+        
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
+</ion-grid>
+
+<ion-grid>
+    <ion-row *ngIf="usuario1 == 'admin' || usuario1 == 'user' ">
+      <ion-card class="cssNueva">
+        <ion-card-content class="cssNueva">
+          <ion-item class="cssNueva">
+            <ion-card-subtitle><p>En este apartado puede modificar su contraseña.</p></ion-card-subtitle> 
+          </ion-item>
+          <ion-item class="cssNueva">
+            <ion-label><b>Nueva Contraseña:</b></ion-label> 
+            <ion-input type="password" placeholder="Ingresa.." [(ngModel)]="data.password"></ion-input>
+          </ion-item>
+          <div class="ion-text-center">
+              <ion-button expand="block" color="success" (click)="modificar()">Modificar</ion-button>
+          </div>
+        </ion-card-content>
+    </ion-card>
+  </ion-row>
+</ion-grid>
+
+<ion-grid>
+    <ion-row *ngIf="usuario1 == 'admin'">
+      <ion-card class="cssAgregar">
+        <ion-card-content class="cssAgregar">
+          <ion-item class="cssAgregar">
+            <ion-card-subtitle><p>En este apartado puede agregar nuevos usuarios.</p></ion-card-subtitle> 
+          </ion-item>
+          <ion-item class="cssAgregar">
+            <ion-label><b>Usuario:</b></ion-label> 
+            <ion-input placeholder="Usuario" [(ngModel)]="nombre"></ion-input>
+          </ion-item>
+          <ion-item class="cssAgregar">
+            <ion-label><b>Password:</b></ion-label> 
+            <ion-input placeholder="Constraseña" [(ngModel)]="password"></ion-input>
+          </ion-item>
+          <ion-item class="cssAgregar">
+            <ion-label><b>Rol:</b></ion-label> 
+            <ion-select [(ngModel)]="rol" value="rol" okText="Aceptar" cancelText="Cancelar">
+              <ion-select-option value="admin">Administrador</ion-select-option>
+              <ion-select-option value="user">Usuario</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div class="ion-text-center">
+              <ion-button expand="block" color="primary" (click)="agregarUsuario()">Agregar</ion-button>
+          </div>
+        </ion-card-content>
+    </ion-card>
+  </ion-row>
+</ion-grid> 
+
+<ion-grid fixed>
+    <ion-row *ngIf="usuario1 == 'admin'"> 
+      <!-- <ion-searchbar class="cssBuscar" [(ngModel)]="miBuscador"></ion-searchbar> -->
+      <ion-col *ngFor="let article of articles" size="12" size-lg="3" size-md="4" size-sm="6" size-xs="12">
+        <ion-card *ngIf="article.username == miBuscador || miBuscador == '' || article.rol == miBuscador"> 
+          <ion-card-header class="cssGet">
+            <!--<ion-card-title class="txt-title">ID: {{ article.id }}</ion-card-title>-->
+            <ion-card-title class="txt-title"><b>Nombre:</b> {{ article.username }} </ion-card-title>
+            <ion-card-title class="txt-title"><b>Contraseña:</b> {{ article.password }} </ion-card-title>
+            <ion-card-title class="txt-title"><b>Rol:</b> {{ article.rol }} </ion-card-title>
+            <ion-button *ngIf="usuario1 == 'admin'" expand="full" (click)="editarUsuario(article.id,article.username,article.password,article.rol)">Editar</ion-button>
+            <ion-button *ngIf="usuario1 == 'admin'" expand="full" color="danger" (click)="eliminarUsuario(article.id)">Eliminar</ion-button>
+            </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
